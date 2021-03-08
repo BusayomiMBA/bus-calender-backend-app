@@ -2,62 +2,62 @@ const db = require('../models');
 
 const index = (req, res) => {
     // Purpose: Fetch all examples from DB and return
-    console.log('=====> Inside GET /examples');
+    console.log('=====> Inside GET /events');
 
-    db.Example.find({}, (err, foundExamples) => {
-        if (err) console.log('Error in example#index:', err);
-        res.json(foundExamples);
+    db.Event.find({}, (err, foundEvents) => {
+        if (err) console.log('Error in event#index:', err);
+        res.json(foundEvents);
     });
 }
 
 const show = (req, res) => {
     // Purpose: Fetch one example from DB and return
-    console.log('=====> Inside GET /examples/:id');
+    console.log('=====> Inside GET /events/:id');
     console.log('=====> req.params');
     console.log(req.params); // object used for finding example by id
 
-    db.Example.findById(req.params.id, (err, foundExample) => {
-        if (err) console.log('Error in example#show:', err);
-        res.json(foundExample);
+    db.Event.findById(req.params.id, (err, foundEvents) => {
+        if (err) console.log('Error in event#show:', err);
+        res.json(foundEvents);
     });
 };
 
 const create = (req, res) => {
     // Purpose: Create one example by adding body to DB, and return
-    console.log('=====> Inside POST /examples');
+    console.log('=====> Inside POST /events');
     console.log('=====> req.body');
     console.log(req.body); // object used for creating new example
 
-    db.Example.create(req.body, (err, savedExample) => {
-        if (err) console.log('Error in example#create:', err);
-        res.json(savedExample);
+    db.Event.create(req.body, (err, savedEvent) => {
+        if (err) console.log('Error in event#create:', err);
+        res.json(savedEvent);
     });
 };
 
 const update = (req, res) => {
     // Purpose: Update one example in the DB, and return
-    console.log('=====> Inside PUT /examples/:id');
+    console.log('=====> Inside PUT /events/:id');
     console.log('=====> req.params');
     console.log(req.params); // object used for finding example by id
     console.log('=====> req.body');
     console.log(req.body); // object used for updating example
 
-    db.Example.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedExample) => {
-        if (err) console.log('Error in example#update:', err);
-        res.json(updatedExample);
+    db.Event.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedEvent) => {
+        if (err) console.log('Error in event#update:', err);
+        res.json(updatedEvent);
     });
 };
 
 const destroy = (req, res) => {
     // Purpose: Update one example in the DB, and return
-    console.log('=====> Inside DELETE /examples/:id');
+    console.log('=====> Inside DELETE /events/:id');
     console.log('=====> req.params');
     console.log(req.params); // object used for finding example by id
     
-    db.Example.findByIdAndDelete(req.params.id, (err, deletedExample) => {
-        if (err) console.log('Error in example#destroy:', err);
+    db.Event.findByIdAndDelete(req.params.id, (err, deletedEvent) => {
+        if (err) console.log('Error in event#destroy:', err);
           res.sendStatus(200);
-          console.log(deletedExample);
+          console.log(deletedEvent);
     });
 };
 
