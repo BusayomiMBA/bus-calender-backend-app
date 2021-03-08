@@ -1,23 +1,23 @@
 const db = require('./models');
 
-const examples = [
-  { name: 'Example 1', completed: true}, 
-  { body: 'Example 2', completed: false}
+const events = [
+  { name: 'Event 1', completed: true}, 
+  { body: 'Event 2', completed: false}
 ];
-const oneExample = { name: 'Example 3', completed: true };
+const oneEvent = { name: 'Event 3', completed: true };
 
-const addManyExamples = async () => {
-  const savedExamples = await db.Example.insertMany(examples);
-  console.log('=======> Saved Examples.');
-  console.log(savedExamples);
+const addManyEvents = async () => {
+  const savedEvents = await db.Event.insertMany(events);
+  console.log('=======> Saved Events.');
+  console.log(savedEvents);
 }
 
-const addOneExample = async () => {
-  const savedOneExample = await db.Example.create(oneExample);
-  console.log('=======> Saved One Example.');
-  console.log(savedOneExample);
+const addOneEvent = async () => {
+  const savedOneEvent = await db.Event.create(oneEvent);
+  console.log('=======> Saved One Event.');
+  console.log(savedOneEvent);
 }
 
 // run the functions
-addManyExamples();
-addOneExample();
+addManyEvents();
+addOneEvent();
