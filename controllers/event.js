@@ -1,3 +1,4 @@
+const passport = require('passport');
 const db = require('../models');
 
 const index = (req, res) => {
@@ -27,13 +28,20 @@ const create = (req, res) => {
     console.log('=====> Inside POST /events');
     console.log('=====> req.body');
     console.log(req.body); // object used for creating new example
-
-    db.Event.create(req.body, (err, savedEvent) => {
-        if (err) console.log('Error in event#create:', err);
-        res.json(savedEvent);
-    });
-};
-
+    console.log(req.user)
+    db.Event.create({
+        title: req.body.title,
+        time: req.body.time,
+        comment: req.body.comment,
+       
+    }, (err, savedEvent) => {
+        if (err) {
+            console.log("Error in event:" + err)
+        } else {
+            res.json(savedEvent)
+        }
+    })
+}
 const update = (req, res) => {
     // Purpose: Update one example in the DB, and return
     console.log('=====> Inside PUT /events/:id');
