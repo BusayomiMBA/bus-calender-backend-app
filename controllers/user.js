@@ -97,7 +97,7 @@ const login = async (req, res) => {
 const profile = (req, res) => {
     console.log('====> inside /profile');
     console.log(req.body);
-    conosle.log('====> user')
+    console.log('====> user')
     console.log(req.user);
     const { id, name, email } = req.user; // object with user object inside
     res.json({ id, name, email });
