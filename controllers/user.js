@@ -92,6 +92,15 @@ const login = async (req, res) => {
         return res.status(400).json({ message: 'User not found' });
     }
 }
+// Get all users as a function
+const allUsers = (req, res) => {
+    db.User.find({}, (err, foundUsers) => {
+        if (err) console.log('Error in user#index:', err);
+        res.json(foundUsers);
+    });
+}
+
+
 
 // private
 const profile = (req, res) => {
@@ -109,4 +118,5 @@ module.exports = {
     register,
     login,
     profile,
+    allUsers,
 }
