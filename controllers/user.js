@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
 
+//require('../../config/passport')(passport)
+
 // Database
 const db = require('../models');
 
@@ -100,17 +102,24 @@ const allUsers = (req, res) => {
     });
 }
 
-
-
 // private
-const profile = (req, res) => {
-    console.log('====> inside /profile');
-    console.log(req.body);
-    console.log('====> user')
-    console.log(req.user);
-    const { id, name, email } = req.user; // object with user object inside
-    res.json({ id, name, email });
-}
+// const profile = (req, res) => {
+//     console.log('====> inside /profile');
+//     console.log(req.body);
+//     console.log('====> user')
+//     console.log(req.user);
+//     const { id, name, email } = req.user; // object with user object inside
+    
+//     User.findById({_id: req.user.id}).populate('events').
+//     exec((err, userEvent) => {
+//         if (err) return handleError(err) 
+//         console.log('?????????',userEvent)
+//     })
+//     res.json({ id, name, email });
+// }
+
+
+
 
 // Exports
 module.exports = {
