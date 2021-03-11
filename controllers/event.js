@@ -56,6 +56,8 @@ const create = async (req, res) => {
         {$addToSet: { events: createEvent._id }},
         {safe: true}
     )
+    
+
     // await foundUser.events.push(createEvent._id)
     console.log("===> event created succesfully")
     res.json(createEvent)
