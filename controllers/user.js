@@ -103,20 +103,21 @@ const allUsers = (req, res) => {
 }
 
 // private
-// const profile = (req, res) => {
-//     console.log('====> inside /profile');
-//     console.log(req.body);
-//     console.log('====> user')
-//     console.log(req.user);
-//     const { id, name, email } = req.user; // object with user object inside
+const profile = (req, res) => {
+    console.log('====> inside /profile');
+    console.log(req.body);
+    console.log('====> user')
+    console.log(req.user);
+    const { id, name, email } = req.user; // object with user object inside
     
-//     User.findById({_id: req.user.id}).populate('events').
-//     exec((err, userEvent) => {
-//         if (err) return handleError(err) 
-//         console.log('?????????',userEvent)
-//     })
-//     res.json({ id, name, email });
-// }
+    db.User.findById({_id: req.user.id}).populate('events').
+    exec((err, userEvent) => {
+        if (err) return handleError(err) 
+        console.log('?????????',userEvent)
+         res.json(userEvent);
+    })
+    
+}
 
 
 
