@@ -29,6 +29,7 @@ const create = async (req, res) => {
     console.log('=====> req.body');
     console.log(req.body); // object used for creating new example
     console.log(req.user)
+    console.log(req.params.userID)
 
     const createEvent = await db.Event.create({
         title: req.body.title,
@@ -51,6 +52,12 @@ const create = async (req, res) => {
     if (!foundUser) {
         console.log('Error in event#show');
     }
+    const foundSecondUser = await db.User.findByIdAndUpdate(req.params.userID,
+        {$addToSet: { events: createEvent._id }},
+        {safe: true}
+    )
+    
+
     // await foundUser.events.push(createEvent._id)
     console.log("===> event created succesfully")
     res.json(createEvent)
