@@ -34,24 +34,19 @@ const create = async (req, res) => {
         title: req.body.title,
         time: req.body.time,
         comment: req.body.comment,
-
-    })
+        })
     console.log(createEvent)
     if (!createEvent) {
         console.log("Error in event")
     }
-
-    
-
-    const foundUser = await db.User.findByIdAndUpdate(req.user.id,
+const foundUser = await db.User.findByIdAndUpdate(req.user.id,
          {$addToSet: { events: createEvent._id }},
         {safe: true}
     ) 
-
-    if (!foundUser) {
+    console.log(foundUser)
+     if (!foundUser) {
         console.log('Error in event#show');
-    }
-    // await foundUser.events.push(createEvent._id)
+        }
     console.log("===> event created succesfully")
     res.json(createEvent)
 }
