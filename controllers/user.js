@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
 
+//require('../../config/passport')(passport)
+
 // Database
 const db = require('../models');
 
@@ -92,6 +94,13 @@ const login = async (req, res) => {
         return res.status(400).json({ message: 'User not found' });
     }
 }
+// Get all users as a function
+const allUsers = (req, res) => {
+    db.User.find({}, (err, foundUsers) => {
+        if (err) console.log('Error in user#index:', err);
+        res.json(foundUsers);
+    });
+}
 
 // private
 const profile = (req, res) => {
@@ -100,8 +109,18 @@ const profile = (req, res) => {
     console.log('====> user')
     console.log(req.user);
     const { id, name, email } = req.user; // object with user object inside
-    res.json({ id, name, email });
+    
+    db.User.findById({_id: req.user.id}).populate('events').
+    exec((err, userEvent) => {
+        if (err) return handleError(err) 
+        console.log('?????????',userEvent)
+         res.json(userEvent);
+    })
+    
 }
+
+
+
 
 // Exports
 module.exports = {
@@ -109,4 +128,5 @@ module.exports = {
     register,
     login,
     profile,
+    allUsers,
 }
