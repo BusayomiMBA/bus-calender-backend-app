@@ -100,37 +100,3 @@ module.exports = {
     update,
     destroy,
 };
-
-// const create = async (req, res) => {
-//     // Purpose: Create one example by adding body to DB, and return
-//     console.log('=====> Inside POST /events');
-//     console.log('=====> req.body');
-//     console.log(req.body); // object used for creating new example
-//     console.log(req.user)
-//  const createEvent =  await db.Event.create({
-//         title: req.body.title,
-//         time: req.body.time,
-//         comment: req.body.comment,
-
-//     }), (err, savedEvent) => {
-//         console.log(savedEvent)
-//         if (err) {
-//             console.log("Error in event:" + err)
-//         } else {
-//             // const findUserById = async (req, res) => {
-//                 const foundUser = db.User.findOne({ _id: req.user._id }, (err, foundUser) => {
-//                     if (err) {
-//                         console.log('Error in event#show:', err);
-//                     } else {
-//                         foundUser.events.push(savedEvent._id)
-//                         console.log("===> event created succesfully")
-//                     }
-//                     res.json(savedEvent)
-//                 })
-//             // }
-//         }
-//     });
-// }
-
-
-
